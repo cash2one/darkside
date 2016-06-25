@@ -74,7 +74,7 @@ def home(request):
         elif isinstance(wechat.message, ImageMessage):
             message = u'''期末试卷下载链接: http://pan.baidu.com/s/1miRKcw4 密码: cixn\n''' +\
                       u'''没有注册云盘的记得先注册，直接点开地址一键保存到自己的云盘，保存好就可以慢慢下载啦！因太多朋友下载，出现无法打开的现象，请耐心等待。不懂如何下载的朋友可以回复关键词：下载'''
-            xml = wechat.response_text(content = u"对不起，暂不支持该功能")
+            xml = wechat.response_text(content = message)
         elif wechat.message.type == 'click':
             if wechat.message.key == u"期末":
                 message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n''' +\
