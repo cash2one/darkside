@@ -4,7 +4,7 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from wechat_sdk import WechatConf
 from wechat_sdk import WechatBasic
-from wechat_sdk.messages import TextMessage
+from wechat_sdk.messages import TextMessage, ImageMessage
 import json
 import urllib
 import urllib2
@@ -46,26 +46,29 @@ def home(request):
                 ret = json.JSONDecoder().decode(urllib.urlopen("http://api.simsimi.com/request.p?key=yourkey&lc=zh&ft=1.0&text=%s" % urllib.quote(wechat.message.content.split(" ", 1)[1].encode("utf-8"))).read())
                 xml = wechat.response_text(ret.get("response", "I don't understand what you say ~~~"))
             else:
-                data["wechat_content"] = wechat.message.content.encode("utf-8")
-                post_data = urllib.urlencode(data)
-                req = json.JSONDecoder().decode(urllib2.urlopen(zhanqun_weixin_url, post_data).read())
-                if int(req["code"]) == 0:
-                    if req["type"] == "text":
-                        xml = wechat.response_text(content = req["msg"])
-                    elif req["type"] == "image":
-                        xml = wechat.response_text(content = "image")
-                    elif req["type"] == "news":
-                        xml = wechat.response_news(req["msg"])
-                else:
-                    xml = wechat.response_text(req.get("msg", wechat.message.content))
+                xml = wechat.response_text(content = u"后台功能升级中...")
+                # data["wechat_content"] = wechat.message.content.encode("utf-8")
+                # post_data = urllib.urlencode(data)
+                # req = json.JSONDecoder().decode(urllib2.urlopen(zhanqun_weixin_url, post_data).read())
+                # if int(req["code"]) == 0:
+                #     if req["type"] == "text":
+                #         xml = wechat.response_text(content = req["msg"])
+                #     elif req["type"] == "image":
+                #         xml = wechat.response_text(content = "image")
+                #     elif req["type"] == "news":
+                #         xml = wechat.response_news(req["msg"])
+                # else:
+                #     xml = wechat.response_text(req.get("msg", wechat.message.content))
+        elif isinstance(wechat.message, TextMessage):
+            xml = wechat.response_text(content = u"后台功能升级中...")
         # 关注事件
-        elif wechat.message.type == 'subscribe':
-            help_string = [{
-                "title": "公众号使用帮助",
-                "url": "http://mp.weixin.qq.com/s?__biz=MzI1OTMwMzkxNw==&mid=100000045&idx=1&sn=09e37fbb835f004a4a4d5eaaabb59187#rd",
-                "picurl": "https://mmbiz.qlogo.cn/mmbiz/CicuwT5KbSicKoq42aPGibicF7XJPibfyqbp0jiania2PiaFF5LywMbLwO7SQlddJOFcMLmNmQM1KXvQu5lGx8jgbXkE7Q/0?wx_fmt=jpeg",
-            }]
-            xml = wechat.response_news(help_string)
+        # elif wechat.message.type == 'subscribe':
+        #     help_string = [{
+        #         "title": "公众号使用帮助",
+        #         "url": "http://mp.weixin.qq.com/s?__biz=MzI1OTMwMzkxNw==&mid=100000045&idx=1&sn=09e37fbb835f004a4a4d5eaaabb59187#rd",
+        #         "picurl": "https://mmbiz.qlogo.cn/mmbiz/CicuwT5KbSicKoq42aPGibicF7XJPibfyqbp0jiania2PiaFF5LywMbLwO7SQlddJOFcMLmNmQM1KXvQu5lGx8jgbXkE7Q/0?wx_fmt=jpeg",
+        #     }]
+        #     xml = wechat.response_news(help_string)
         else:
             xml = wechat.response_text(content = u"对不起，暂不支持该功能")
         return HttpResponse(xml, content_type = "application/xml")
