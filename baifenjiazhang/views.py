@@ -48,8 +48,8 @@ def home(request):
             else:
                 if wechat.message.content == u"期末":
                     message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n''' +\
-                              u'''第一步：转发下面的图片到朋友圈，并配上下面这句话：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c#rd">点击获取图片</a>\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
-                              u'''符合条件的家长将收到下载链接，不然有会被拉黑，永远收不到之后的资料了哟'''
+                              u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a >，并附上下面的介绍：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
+                              u'''符合条件的家长将收到下载链接，不然有可能会被拉黑，永远收不到之后的资料了哟'''
                     xml = wechat.response_text(content = message)
                     # xml += wechat.response_image(media_id = "pqn1KlnugZbvRsXJ3aW5Z3OUfJqetQ66R8ggDdkOKbY")
                 elif wechat.message.content == u"下载":
@@ -81,8 +81,8 @@ def home(request):
         elif wechat.message.type == 'click':
             if wechat.message.key == u"期末":
                 message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n''' +\
-                          u'''第一步：转发下面的图片到朋友圈，并配上下面这句话：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c#rd">点击获取图片</a>\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
-                          u'''符合条件的家长将收到下载链接，不然有会被拉黑，永远收不到之后的资料了哟'''
+                          u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a >，并附上下面的介绍：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
+                          u'''符合条件的家长将收到下载链接，不然有可能会被拉黑，永远收不到之后的资料了哟'''
                 xml = wechat.response_text(content = message)
         # 关注事件
         elif wechat.message.type == 'subscribe':
