@@ -64,13 +64,9 @@ def home(request):
         elif wechat.message.type == 'click':
             xml = wechat.response_text(content = u"点击事件key = [%s]" % wechat.message.key)
         # 关注事件
-        # elif wechat.message.type == 'subscribe':
-        #     help_string = [{
-        #         "title": "公众号使用帮助",
-        #         "url": "http://mp.weixin.qq.com/s?__biz=MzI1OTMwMzkxNw==&mid=100000045&idx=1&sn=09e37fbb835f004a4a4d5eaaabb59187#rd",
-        #         "picurl": "https://mmbiz.qlogo.cn/mmbiz/CicuwT5KbSicKoq42aPGibicF7XJPibfyqbp0jiania2PiaFF5LywMbLwO7SQlddJOFcMLmNmQM1KXvQu5lGx8jgbXkE7Q/0?wx_fmt=jpeg",
-        #     }]
-        #     xml = wechat.response_news(help_string)
+        elif wechat.message.type == 'subscribe':
+            message = u'''感谢关注百分家长，我们专注于帮助家长提高孩子的成绩。为此我们会不定期分享学习资料，每周四安排一位专家老师教育知识和学习方法。\n回复 期末 下载最新的期末试卷\n\n消息自动回复：\n这里自动回复，下载期末试卷请回复 期末\n已经得到下载链接，但是不会下载，请回复 下载'''
+            xml = wechat.response_text(content = message)
         else:
             xml = wechat.response_text(content = u"对不起，暂不支持该功能")
         return HttpResponse(xml, content_type = "application/xml")
