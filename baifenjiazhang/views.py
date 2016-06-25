@@ -60,7 +60,9 @@ def home(request):
                 # else:
                 #     xml = wechat.response_text(req.get("msg", wechat.message.content))
         elif isinstance(wechat.message, TextMessage):
-            xml = wechat.response_text(content = u"后台功能升级中...")
+            xml = wechat.response_text(content = u"对不起，暂不支持该功能")
+        elif wechat.message.type == 'click':
+            xml = wechat.response_text(content = u"点击事件key = [%s]" % wechat.message.key)
         # 关注事件
         # elif wechat.message.type == 'subscribe':
         #     help_string = [{
