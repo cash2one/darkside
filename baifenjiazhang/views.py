@@ -51,6 +51,8 @@ def home(request):
                               u'''第一步：转发下面的图片到朋友圈，并配上下面这句话：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n<img src="https://mmbiz.qlogo.cn/mmbiz/8AiaaAbia52NLibEACd3qTrJic5Ypa0fNjmJWjYicZr8jFUvaDVZAknmqEBaC83WVw1uZOfGuCvQTuDic5ib9zDN2U7ZA/0?wx_fmt=jpeg" />\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
                               u'''符合条件的家长将收到下载链接，不然有会被拉黑，永远收不到之后的资料了哟'''
                     xml = wechat.response_text(content = message)
+
+                    xml += wechat.response_image(media_id = "pqn1KlnugZbvRsXJ3aW5Z3OUfJqetQ66R8ggDdkOKbY")
                 elif wechat.message.content == u"下载":
                     message = u'''下载遇到问题请点击<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512906&idx=1&sn=610ac39498936cdc5dea38a532dfb4f1#rd">这里</a>'''
                     xml = wechat.response_text(content = message)
