@@ -88,6 +88,9 @@ def home(request):
         elif wechat.message.type == 'subscribe':
             message = u'''感谢关注百分家长，我们专注于帮助家长提高孩子的成绩。为此我们会不定期分享学习资料，每周四安排一位专家老师教育知识和学习方法。\n回复 期末 下载最新的期末试卷'''
             xml = wechat.response_text(content = message)
+        elif wechat.message.type == 'scan':
+            message = u'''百分家长，我们专注于帮助家长提高孩子的成绩。为此我们会不定期分享学习资料，每周四安排一位专家老师教育知识和学习方法。\n回复 期末 下载最新的期末试卷'''
+            xml = wechat.response_text(content = message)
         else:
             xml = wechat.response_text(content = u"这是自动回复，下载期末试卷请回复 期末\n已经得到下载链接，但是不会下载，请回复 下载")
         return HttpResponse(xml, content_type = "application/xml")
