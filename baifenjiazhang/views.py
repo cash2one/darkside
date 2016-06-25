@@ -47,8 +47,8 @@ def home(request):
                 xml = wechat.response_text(ret.get("response", "I don't understand what you say ~~~"))
             else:
                 if wechat.message.content == u"期末":
-                    message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n''' +\
-                              u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a>，并附上下面的介绍：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
+                    message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n\n''' +\
+                              u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a>，并附上下面的介绍：\n\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n\n第二步：分享后截图，并将截图发给百分家长公众号。\n\n''' +\
                               u'''符合条件的家长将收到下载链接，不然有可能会被拉黑，永远收不到之后的资料了哟'''
                     xml = wechat.response_text(content = message)
                     # xml += wechat.response_image(media_id = "pqn1KlnugZbvRsXJ3aW5Z3OUfJqetQ66R8ggDdkOKbY")
@@ -61,7 +61,7 @@ def home(request):
                 elif wechat.message.content == u"图片":
                     xml = wechat.response_image(media_id = "pqn1KlnugZbvRsXJ3aW5Z3OUfJqetQ66R8ggDdkOKbY")
                 else:
-                    xml = wechat.response_text(content = u'''不支持当前查询''')
+                    xml = wechat.response_text(content = u'''这是自动回复，下载期末试卷请回复 期末\n已经得到下载链接，但是不会下载，请回复 下载''')
                 # data["wechat_content"] = wechat.message.content.encode("utf-8")
                 # post_data = urllib.urlencode(data)
                 # req = json.JSONDecoder().decode(urllib2.urlopen(zhanqun_weixin_url, post_data).read())
@@ -80,8 +80,8 @@ def home(request):
             xml = wechat.response_text(content = message)
         elif wechat.message.type == 'click':
             if wechat.message.key == u"期末":
-                message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n''' +\
-                          u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a>，并附上下面的介绍：\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n第二步：分享后截图，并将截图发给百分家长公众号。\n''' +\
+                message = u'''这次试卷整理的比较全，希望能帮助更多的家长，希望大家多多传递。按照以下操作领取试卷\n\n''' +\
+                          u'''第一步：转发<a href="http://mp.weixin.qq.com/s?__biz=MzA5MjQ2ODgzMA==&mid=503512941&idx=1&sn=a7c316a9780554d3bc27f21b27a9376c">【这个链接期末试卷免费领到朋友圈】</a>，并附上下面的介绍：\n\n小学1-5年级期末复习时间，考前提分冲刺，扫描领取，推荐给大家。\n\n第二步：分享后截图，并将截图发给百分家长公众号。\n\n''' +\
                           u'''符合条件的家长将收到下载链接，不然有可能会被拉黑，永远收不到之后的资料了哟'''
                 xml = wechat.response_text(content = message)
         # 关注事件
@@ -89,5 +89,5 @@ def home(request):
             message = u'''感谢关注百分家长，我们专注于帮助家长提高孩子的成绩。为此我们会不定期分享学习资料，每周四安排一位专家老师教育知识和学习方法。\n回复 期末 下载最新的期末试卷'''
             xml = wechat.response_text(content = message)
         else:
-            xml = wechat.response_text(content = u"对不起，暂不支持该功能")
+            xml = wechat.response_text(content = u"这是自动回复，下载期末试卷请回复 期末\n已经得到下载链接，但是不会下载，请回复 下载")
         return HttpResponse(xml, content_type = "application/xml")
