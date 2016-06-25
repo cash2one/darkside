@@ -5,7 +5,6 @@ from django.views.decorators.csrf import csrf_exempt
 from wechat_sdk import WechatConf
 from wechat_sdk import WechatBasic
 from wechat_sdk.messages import TextMessage
-from darkside.settings import APPTOKEN, APPID, APPSECRET, ENCRYPT_MODE, ENCODING_AES_KEY
 import json
 import urllib
 import urllib2
@@ -13,15 +12,14 @@ import urllib2
 # Create your views here.
 
 wechat_conf = WechatConf(
-    token = APPTOKEN,
-    appid = APPID,
-    appsecret = APPSECRET,
-    encrypt_mode = ENCRYPT_MODE,
-    encoding_aes_key = ENCODING_AES_KEY
+    token = "baifenjiazhang_genshuixue",
+    appid = "wx607fb967a5b52ae9",
+    appsecret = "13a74f10843bb3b316c88f2a1e1f764b",
+    encrypt_mode = "normal",
+    encoding_aes_key = "rBSkOY8YVTR5PBlyCrhuR7Ll1qgvi2fiIk2hkTY1JWk"
 )
 
 wechat = WechatBasic(conf = wechat_conf)
-
 zhanqun_weixin_url = "http://www.genshuixue.com/i-api/weixin/tags.post"
 
 @csrf_exempt
